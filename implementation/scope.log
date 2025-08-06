@@ -1,0 +1,41 @@
+Mdi:ArrangeIcons
+wm geometry . 900x785+465+21
+Mdi:ArrangeIcons
+wm geometry . 900x785+466+22
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+wm geometry . 900x785+469+27
+Mdi:ArrangeIcons
+wm geometry . 900x785+471+29
+Mdi:ArrangeIcons
+wm geometry . 900x785+471+30
+ScopeSigMgr:loadpffile /home/akim229/ece482.work/gpdk045/combined2.tr0 1 openonly
+# PF:1
+wm geometry .sigmgr._PF:1 290x360+960+505
+ScopeSigMgr:Unload 0 {{(1) combined2.tr0}}
+ScopeSigMgr:loadpffile /home/akim229/ece482.work/gpdk045/combined.tr0 1 openonly
+# PF:2
+wm geometry .sigmgr._PF:2 290x360+960+505
+pf:read PF:2 v(a0)
+# WF:2:1
+Graph addsignal WF:2:1 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal0
+pf:read PF:2 v(a1)
+# WF:2:2
+Graph addsignal WF:2:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal1
+pf:read PF:2 v(a2)
+# WF:2:3
+Graph addsignal WF:2:3 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal2
+pf:read PF:2 v(a3)
+# WF:2:4
+Graph addsignal WF:2:4 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal3

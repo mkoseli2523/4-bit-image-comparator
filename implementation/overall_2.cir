@@ -1,0 +1,782 @@
+project testbench
+.lib '/class/ece482/gpdk045_mos' SS
+
+$The following parameter can be modified.
+.param TCK = 0.4167n
+
+$The following parameters cannot be modified.
+.param trf_ck = 5p
+.param trf_ip_reset = 50p
+.param CK_pw = 0.5*TCK
+.param reset_delay = 0
+.param reset_delay2 = 25*TCK
+.param reset_pw = 0.9n
+.param reset_pw2 = 3n
+.param sim_end = 50*TCK
+.param input_delay = 0.5n
+.param input_pw = 4*TCK
+c_load q vss 10p
+$Clock Buffer - You will clk_out as your clock signal
+mnm1 clk_out net10 vss vss g45n1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mnm0 net10 CK vss vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm1 clk_out net10 vdd vdd g45p1svt L=45e-9 W=1.92e-6 AD=268.8e-15 AS=268.8e-15 PD=4.12e-6 PS=4.12e-6 NRD=72.9167e-3 NRS=72.9167e-3 M=1
+mpm0 net10 CK vdd vdd g45p1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+
+vX3 x3 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+3*input_pw' 1.1  'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vX2 x2 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+3*input_pw' 1.1  'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vX1 x1 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+3*input_pw' 0  'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vX0 x0 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+3*input_pw' 0  'input_delay+4*trf_ip_reset+3*input_pw' 1.1 'input_delay+4*trf_ip_reset+4*input_pw' 1.1 sim_end 1.1)
+vY3 y3 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+3*input_pw' 1.1  'input_delay+4*trf_ip_reset+3*input_pw' 1.1 'input_delay+4*trf_ip_reset+4*input_pw' 1.1 sim_end 1.1)
+vY2 y2 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 sim_end 1.1)
+vY1 y1 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vY0 y0 0 PWL(0 0 sim_end 0)
+
+vCK CK 0 pulse(0 1.1 trf_ck trf_ck trf_ck CK_pw TCK)
+vReset reset 0 PWL(0 1.1 reset_delay 1.1 'reset_delay+trf_ip_reset' 1.1 'reset_delay+reset_pw+trf_ip_reset' 1.1 'reset_delay+reset_pw+2*trf_ip_reset' 0 'reset_delay+reset_pw+2*trf_ip_reset+reset_delay2' 0 'reset_delay+reset_pw+3*trf_ip_reset+reset_delay2' 1.1 'reset_delay+reset_pw+reset_pw2+3*trf_ip_reset+reset_delay2' 1.1 'reset_delay+reset_pw+reset_pw2+4*trf_ip_reset+reset_delay2' 0 sim_end 0)
+
+vVDDIO vdd_oc 0 1.8
+vVDD VDD 0 1.1
+vVSS VSS 0 0
+
+.tran 0 sim_end
+
+.option post
+
+
+** Library name: proj
+** Cell name: overall
+** View name: av_extracted
+c1 vdd vss 42.6597e-15
+c2 x1 vss 218.102e-18
+c3 x2 vss 218.596e-18
+c4 x3 vss 219.942e-18
+c5 clk_out vss 4.2588e-15
+c6 q vss 77.2644e-15
+c7 reset vss 6.1131e-15
+c8 vdd_oc vss 57.7273e-15
+c9 x0 vss 220.141e-18
+c10 y0 vss 219.88e-18
+c11 y1 vss 220.934e-18
+c12 y2 vss 222.262e-18
+c13 y3 vss 220.091e-18
+c14 ck vss 1.15607e-15
+c15 ck_bar vss 1.28069e-15
+c16 r0 vss 1.09372e-15
+c17 r1 vss 1.75287e-15
+c18 r2 vss 1.75105e-15
+c19 bcore vss 1.25857e-15
+c20 shift vss 3.19942e-15
+c21 _net7 vss 1.75395e-15
+c22 _net6 vss 2.67081e-15
+c23 _net5 vss 3.36949e-15
+c24 _net4 vss 2.15186e-15
+c25 _net3 vss 1.91742e-15
+c26 _net2 vss 3.0314e-15
+c27 _net1 vss 2.99188e-15
+c28 _net0 vss 4.1288e-15
+c29 clk_divided_four vss 8.40013e-15
+c30 serial_in vss 1.69219e-15
+c31 i10__i1__ck vss 1.07381e-15
+c32 i10__i1__ck_bar vss 944.637e-18
+c33 i10__i1__i1__net3 vss 108.648e-18
+c34 i10__i1__i1__net5 vss 523.688e-18
+c35 i10__i1__i1__net1 vss 107.28e-18
+c36 i10__i1__i1__net2 vss 193.313e-18
+c37 i10__i1__i1__net4 vss 192.767e-18
+c38 i10__i1__i0__t_out vss 540.756e-18
+c39 i10__i1__i0__clk_out vss 444.173e-18
+c40 i10__i10__ck vss 1.16619e-15
+c41 i10__i10__ck_bar vss 1.04367e-15
+c42 i10__i10__i1__net3 vss 110.273e-18
+c43 i10__i10__i1__net5 vss 527.338e-18
+c44 i10__i10__i1__net1 vss 108.25e-18
+c45 i10__i10__i1__net2 vss 195.073e-18
+c46 i10__i10__i1__net4 vss 194.753e-18
+c47 i10__i10__i0__t_out vss 541.229e-18
+c48 i10__i10__i0__clk_out vss 446.451e-18
+c49 i10__i9__ck vss 1.14165e-15
+c50 i10__i9__ck_bar vss 1.01766e-15
+c51 i10__i9__i1__net3 vss 108.525e-18
+c52 i10__i9__i1__net5 vss 528.502e-18
+c53 i10__i9__i1__net1 vss 114.174e-18
+c54 i10__i9__i1__net2 vss 193.364e-18
+c55 i10__i9__i1__net4 vss 194.437e-18
+c56 i10__i9__i0__t_out vss 543.397e-18
+c57 i10__i9__i0__clk_out vss 449.032e-18
+c58 i10__i8__ck vss 1.13711e-15
+c59 i10__i8__ck_bar vss 1.00055e-15
+c60 i10__i8__i1__net3 vss 107.982e-18
+c61 i10__i8__i1__net5 vss 527.443e-18
+c62 i10__i8__i1__net1 vss 107.369e-18
+c63 i10__i8__i1__net2 vss 193.364e-18
+c64 i10__i8__i1__net4 vss 191.728e-18
+c65 i10__i8__i0__t_out vss 539.818e-18
+c66 i10__i8__i0__clk_out vss 442.756e-18
+c67 i23__i1__ck vss 1.08381e-15
+c68 i23__i1__ck_bar vss 948.279e-18
+c69 i23__i1__i1__net3 vss 109.066e-18
+c70 i23__i1__i1__net5 vss 523.496e-18
+c71 i23__i1__i1__net1 vss 107.319e-18
+c72 i23__i1__i1__net2 vss 192.617e-18
+c73 i23__i1__i1__net4 vss 193.884e-18
+c74 i23__i1__i0__t_out vss 541.245e-18
+c75 i23__i1__i0__clk_out vss 451.525e-18
+c76 i23__i10__ck vss 1.1104e-15
+c77 i23__i10__ck_bar vss 1.00932e-15
+c78 i23__i10__i1__net3 vss 109.654e-18
+c79 i23__i10__i1__net5 vss 524.216e-18
+c80 i23__i10__i1__net1 vss 107.943e-18
+c81 i23__i10__i1__net2 vss 191.765e-18
+c82 i23__i10__i1__net4 vss 196.821e-18
+c83 i23__i10__i0__t_out vss 537.208e-18
+c84 i23__i10__i0__clk_out vss 438.806e-18
+c85 i23__i9__ck vss 1.11831e-15
+c86 i23__i9__ck_bar vss 1.01342e-15
+c87 i23__i9__i1__net3 vss 109.15e-18
+c88 i23__i9__i1__net5 vss 526.025e-18
+c89 i23__i9__i1__net1 vss 107.369e-18
+c90 i23__i9__i1__net2 vss 207.823e-18
+c91 i23__i9__i1__net4 vss 191.555e-18
+c92 i23__i9__i0__t_out vss 536.477e-18
+c93 i23__i9__i0__clk_out vss 456.623e-18
+c94 i23__i8__ck vss 1.13797e-15
+c95 i23__i8__ck_bar vss 1.01312e-15
+c96 i23__i8__i1__net3 vss 109.405e-18
+c97 i23__i8__i1__net5 vss 526.935e-18
+c98 i23__i8__i1__net1 vss 107.735e-18
+c99 i23__i8__i1__net2 vss 192.612e-18
+c100 i23__i8__i1__net4 vss 189.206e-18
+c101 i23__i8__i0__t_out vss 538.921e-18
+c102 i23__i8__i0__clk_out vss 441.867e-18
+c103 i20__net5 vss 65.6512e-15
+c104 i20__net3 vss 5.30447e-15
+c105 i20__net4 vss 18.5305e-15
+c106 i20__net1 vss 753.735e-18
+c107 i20__net2 vss 1.90884e-15
+c108 i21__bcore_not vss 333.342e-18
+c109 i21__bio_not vss 471.516e-18
+c110 i25__net90 vss 111.825e-18
+c111 i25__clk_divided_two_bar vss 2.14821e-15
+c112 i25__net91 vss 403.04e-18
+c113 i25__net93 vss 120.606e-18
+c114 i25__net26 vss 1.1216e-15
+c115 i25__net94 vss 120.971e-18
+c116 i25__clk_divided_four_bar vss 1.37164e-15
+c117 i25__net85 vss 365.184e-18
+c118 i25__net87 vss 111.435e-18
+c119 i25__net1 vss 339.072e-18
+c120 i25__i5__net1 vss 117.27e-18
+c121 i25__net89 vss 110.794e-18
+c122 i25__net92 vss 106.85e-18
+c123 i25__net95 vss 104.911e-18
+c124 i25__net86 vss 110.443e-18
+c125 i24__a3 vss 1.24003e-15
+c126 i24__a2 vss 1.19351e-15
+c127 i24__a1 vss 1.22612e-15
+c128 i24__a0 vss 1.17814e-15
+c129 i24__i5__a_in vss 2.28348e-15
+c130 i24__i5__b_in vss 2.12874e-15
+c131 i24__i5__c_in vss 1.61923e-15
+c132 i24__i5__s2 vss 1.28508e-15
+c133 i24__i5__s1 vss 1.17068e-15
+c134 i24__i5__i35__i18__net1 vss 85.8307e-18
+c135 i24__i5__i35__i18__net2 vss 423.048e-18
+c136 i24__i5__i35__i17__net1 vss 862.694e-18
+c137 i24__i5__i35__i17__net2 vss 438.574e-18
+c138 i24__i5__i34__i18__net1 vss 93.0549e-18
+c139 i24__i5__i34__i18__net2 vss 448.628e-18
+c140 i24__i5__i34__i17__net1 vss 864.796e-18
+c141 i24__i5__i34__i17__net2 vss 417.98e-18
+c142 i24__i5__i33__i18__net1 vss 91.3948e-18
+c143 i24__i5__i33__i18__net2 vss 461.99e-18
+c144 i24__i5__i33__i17__net1 vss 885.081e-18
+c145 i24__i5__i33__i17__net2 vss 463.62e-18
+c146 i24__i5__i36__net10 vss 85.9644e-18
+c147 i24__i5__i36__net9 vss 502.08e-18
+c148 i24__i5__i36__net13 vss 202.84e-18
+c149 i24__i5__i36__net3 vss 93.0265e-18
+c150 i24__i5__i36__net4 vss 94.5219e-18
+c151 i24__i5__i36__net11 vss 70.5938e-18
+c152 i24__i5__i36__net1 vss 1.56267e-15
+c153 i24__i5__i36__net7 vss 443.204e-18
+c154 i24__i5__i36__net12 vss 197.749e-18
+c155 i24__i5__i36__net6 vss 76.2652e-18
+c156 i24__i5__i36__net5 vss 79.5853e-18
+c157 i24__i5__i36__net2 vss 600.794e-18
+c158 i24__i6__net1 vss 85.3617e-18
+c159 i24__i6__net2 vss 451.045e-18
+c160 i24__i7__net1 vss 86.1731e-18
+c161 i24__i7__net2 vss 459.572e-18
+c162 i24__i8__net1 vss 83.3724e-18
+c163 i24__i8__net2 vss 446.224e-18
+c164 i24__i9__net1 vss 81.6906e-18
+c165 i24__i9__net2 vss 464.052e-18
+c166 i14__clk_bar vss 3.55685e-15
+c167 i14__shift_bar vss 2.89944e-15
+c168 i14__q2 vss 1.13908e-15
+c169 i14__d2 vss 1.21092e-15
+c170 i14__q1 vss 1.20362e-15
+c171 i14__d1 vss 1.24696e-15
+c172 i14__q0 vss 1.20743e-15
+c173 i14__i14__net4 vss 195.435e-18
+c174 i14__i14__net2 vss 196.828e-18
+c175 i14__i14__net5 vss 532.264e-18
+c176 i14__i14__net1 vss 108.623e-18
+c177 i14__i14__net3 vss 111.05e-18
+c178 i14__i13__net4 vss 195.685e-18
+c179 i14__i13__net2 vss 196.27e-18
+c180 i14__i13__net5 vss 534.882e-18
+c181 i14__i13__net1 vss 107.256e-18
+c182 i14__i13__net3 vss 110.336e-18
+c183 i14__i12__net4 vss 196.724e-18
+c184 i14__i12__net2 vss 197.237e-18
+c185 i14__i12__net5 vss 537.334e-18
+c186 i14__i12__net1 vss 107.492e-18
+c187 i14__i12__net3 vss 110.551e-18
+c188 i26__t_out vss 532.856e-18
+c189 i26__clk_out vss 453.092e-18
+mi20__pm5_67__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_66__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_65__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_64__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_63__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_62__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_61__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_60__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.49625e-12 AS=1.49625e-12 PD=20.3e-6 PS=20.3e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_59__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_58__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_57__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_56__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_55__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_54__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_53__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_52__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_51__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_50__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_49__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_48__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_47__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_46__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_45__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_44__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_43__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_42__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_41__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_40__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_39__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_38__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_37__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_36__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_35__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_34__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_33__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_32__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_31__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_30__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_29__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_28__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_27__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_26__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_25__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_24__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_23__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_22__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_21__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_20__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_19__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_18__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_17__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_16__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_15__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_14__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_13__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_12__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_11__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_10__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_9__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_8__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_7__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.3e-6 PS=20.3e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_6__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_5__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_4__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_3__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_2__rcx vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5_1__rcx q i20__net5 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm5 vdd_oc i20__net5 q vdd_oc g45p2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_18__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_17__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_16__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_15__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_14__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_13__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_12__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_11__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_10__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.44225e-12 AS=1.44225e-12 PD=19.58e-6 PS=19.58e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_9__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_8__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.58e-6 PS=19.58e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_7__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_6__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_5__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_4__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_3__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_2__rcx i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4_1__rcx vdd_oc i20__net4 i20__net5 vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm4 i20__net5 i20__net4 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm0 i20__net1 serial_in vdd_oc vdd_oc g45p2svt L=150e-9 W=960e-9 AD=144e-15 AS=144e-15 PD=2.22e-6 PS=2.22e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm1 i20__net2 i20__net1 vdd_oc vdd_oc g45p2svt L=150e-9 W=3.565e-6 AD=534.75e-15 AS=534.75e-15 PD=7.43e-6 PS=7.43e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm2_1__rcx i20__net3 i20__net2 vdd_oc vdd_oc g45p2svt L=150e-9 W=6.62e-6 AD=1.324e-12 AS=1.324e-12 PD=13.59e-6 PS=13.59e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm2 vdd_oc i20__net2 i20__net3 vdd_oc g45p2svt L=150e-9 W=6.62e-6 AD=993e-15 AS=993e-15 PD=13.59e-6 PS=13.59e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm3_4__rcx i20__net4 i20__net3 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.02e-6 PS=20.02e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm3_3__rcx vdd_oc i20__net3 i20__net4 vdd_oc g45p2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.07e-6 PS=20.07e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm3_2__rcx i20__net4 i20__net3 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.07e-6 PS=20.07e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm3_1__rcx vdd_oc i20__net3 i20__net4 vdd_oc g45p2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.07e-6 PS=20.07e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__pm3 i20__net4 i20__net3 vdd_oc vdd_oc g45p2svt L=150e-9 W=9.835e-6 AD=1.47525e-12 AS=1.47525e-12 PD=20.02e-6 PS=20.02e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi21__m1 vdd_oc serial_in i21__bio_not vdd_oc g45p2svt L=150e-9 W=320e-9 AD=48e-15 AS=48e-15 PD=940e-9 PS=940e-9 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi21__m0 vdd_oc i21__bio_not serial_in vdd_oc g45p2svt L=150e-9 W=320e-9 AD=48e-15 AS=48e-15 PD=940e-9 PS=940e-9 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi10__i1__i1__pm2 _net4 i10__i1__ck_bar i10__i1__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__pm3 i10__i1__i1__net4 i10__i1__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__pm1 i10__i1__i1__net5 i10__i1__ck i10__i1__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__pm0 i10__i1__i1__net2 x3 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__pm5 vdd i10__i1__i0__clk_out i10__i1__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__pm4 vdd clk_divided_four i10__i1__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__pm0 i10__i1__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__pm1 i10__i1__ck_bar i10__i1__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__pm2 _net7 i10__i10__ck_bar i10__i10__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__pm3 i10__i10__i1__net4 i10__i10__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__pm1 i10__i10__i1__net5 i10__i10__ck i10__i10__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__pm0 i10__i10__i1__net2 x0 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__pm5 vdd i10__i10__i0__clk_out i10__i10__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__pm4 vdd clk_divided_four i10__i10__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__pm0 i10__i10__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__pm1 i10__i10__ck_bar i10__i10__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__pm2 _net6 i10__i9__ck_bar i10__i9__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__pm3 i10__i9__i1__net4 i10__i9__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__pm1 i10__i9__i1__net5 i10__i9__ck i10__i9__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__pm0 i10__i9__i1__net2 x1 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__pm5 vdd i10__i9__i0__clk_out i10__i9__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__pm4 vdd clk_divided_four i10__i9__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__pm0 i10__i9__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__pm1 i10__i9__ck_bar i10__i9__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__pm2 _net5 i10__i8__ck_bar i10__i8__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__pm3 i10__i8__i1__net4 i10__i8__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__pm1 i10__i8__i1__net5 i10__i8__ck i10__i8__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__pm0 i10__i8__i1__net2 x2 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__pm5 vdd i10__i8__i0__clk_out i10__i8__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__pm4 vdd clk_divided_four i10__i8__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__pm0 i10__i8__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__pm1 i10__i8__ck_bar i10__i8__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__pm2 _net0 i23__i1__ck_bar i23__i1__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__pm3 i23__i1__i1__net4 i23__i1__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__pm1 i23__i1__i1__net5 i23__i1__ck i23__i1__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__pm0 i23__i1__i1__net2 y3 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__pm5 vdd i23__i1__i0__clk_out i23__i1__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__pm4 vdd clk_divided_four i23__i1__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__pm0 i23__i1__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__pm1 i23__i1__ck_bar i23__i1__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__pm2 _net3 i23__i10__ck_bar i23__i10__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__pm3 i23__i10__i1__net4 i23__i10__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__pm1 i23__i10__i1__net5 i23__i10__ck i23__i10__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__pm0 i23__i10__i1__net2 y0 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__pm5 vdd i23__i10__i0__clk_out i23__i10__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__pm4 vdd clk_divided_four i23__i10__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__pm0 i23__i10__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__pm1 i23__i10__ck_bar i23__i10__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__pm2 _net2 i23__i9__ck_bar i23__i9__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__pm3 i23__i9__i1__net4 i23__i9__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__pm1 i23__i9__i1__net5 i23__i9__ck i23__i9__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__pm0 i23__i9__i1__net2 y1 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__pm5 vdd i23__i9__i0__clk_out i23__i9__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__pm4 vdd clk_divided_four i23__i9__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__pm0 i23__i9__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__pm1 i23__i9__ck_bar i23__i9__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__pm2 _net1 i23__i8__ck_bar i23__i8__i1__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__pm3 i23__i8__i1__net4 i23__i8__i1__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__pm1 i23__i8__i1__net5 i23__i8__ck i23__i8__i1__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__pm0 i23__i8__i1__net2 y2 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__pm5 vdd i23__i8__i0__clk_out i23__i8__ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__pm4 vdd clk_divided_four i23__i8__i0__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__pm0 i23__i8__i0__t_out vss clk_divided_four vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__pm1 i23__i8__ck_bar i23__i8__i0__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi21__pm1 vdd bcore i21__bcore_not vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__i5__pm1 vdd i25__clk_divided_two_bar shift vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__i5__pm0 shift i25__clk_divided_four_bar vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm9 i25__net1 i25__clk_divided_two_bar i25__net87 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm8 i25__net87 i25__net85 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm7 i25__net85 i25__net26 i25__net94 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm6 i25__net94 i25__clk_divided_four_bar vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm3 i25__net26 ck_bar i25__net93 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm2 i25__net93 i25__net91 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm1 i25__net91 ck i25__net90 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm0 i25__net90 i25__clk_divided_two_bar vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm4 i25__clk_divided_two_bar i25__net26 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm5 i25__clk_divided_four_bar i25__net1 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__pm10 clk_divided_four i25__clk_divided_four_bar vdd vdd g45p1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i18__pm0 i24__i5__i35__i18__net1 i24__i5__s2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i18__pm1 i24__i5__i35__i18__net2 i24__i5__s1 i24__i5__i35__i18__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i18__pm2 r0 i24__i5__i35__i18__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm1_2__rcx i24__i5__i35__i17__net1 i24__i5__s2 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm1_1__rcx vdd i24__i5__s2 i24__i5__i35__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm1 i24__i5__i35__i17__net1 i24__i5__s2 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm0_2__rcx vdd i24__i5__s1 i24__i5__i35__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm0_1__rcx i24__i5__i35__i17__net1 i24__i5__s1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm0 vdd i24__i5__s1 i24__i5__i35__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm2_2__rcx i24__i5__c_in i24__i5__i35__i17__net1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm2_1__rcx vdd i24__i5__i35__i17__net1 i24__i5__c_in vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__pm2 i24__i5__c_in i24__i5__i35__i17__net1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i18__pm0 i24__i5__i34__i18__net1 i24__a1 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i18__pm1 i24__i5__i34__i18__net2 i24__a0 i24__i5__i34__i18__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i18__pm2 i24__i5__s1 i24__i5__i34__i18__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm1_2__rcx i24__i5__i34__i17__net1 i24__a1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm1_1__rcx vdd i24__a1 i24__i5__i34__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm1 i24__i5__i34__i17__net1 i24__a1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm0_2__rcx vdd i24__a0 i24__i5__i34__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm0_1__rcx i24__i5__i34__i17__net1 i24__a0 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm0 vdd i24__a0 i24__i5__i34__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm2_2__rcx i24__i5__a_in i24__i5__i34__i17__net1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm2_1__rcx vdd i24__i5__i34__i17__net1 i24__i5__a_in vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__pm2 i24__i5__a_in i24__i5__i34__i17__net1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i18__pm0 i24__i5__i33__i18__net1 i24__a3 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i18__pm1 i24__i5__i33__i18__net2 i24__a2 i24__i5__i33__i18__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i18__pm2 i24__i5__s2 i24__i5__i33__i18__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm1_2__rcx i24__i5__i33__i17__net1 i24__a3 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm1_1__rcx vdd i24__a3 i24__i5__i33__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm1 i24__i5__i33__i17__net1 i24__a3 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm0_2__rcx vdd i24__a2 i24__i5__i33__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm0_1__rcx i24__i5__i33__i17__net1 i24__a2 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm0 vdd i24__a2 i24__i5__i33__i17__net1 vdd g45p1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm2_2__rcx i24__i5__b_in i24__i5__i33__i17__net1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm2_1__rcx vdd i24__i5__i33__i17__net1 i24__i5__b_in vdd g45p1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__pm2 i24__i5__b_in i24__i5__i33__i17__net1 vdd vdd g45p1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm94_2__rcx i24__i5__i36__net1 i24__i5__c_in i24__i5__i36__net9 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm84 i24__i5__i36__net10 i24__i5__a_in i24__i5__i36__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm83 vdd i24__i5__b_in i24__i5__i36__net10 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm85 i24__i5__i36__net13 i24__i5__a_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm86 vdd i24__i5__b_in i24__i5__i36__net13 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm87 i24__i5__i36__net13 i24__i5__c_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm88 i24__i5__i36__net2 i24__i5__i36__net1 i24__i5__i36__net13 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm91 i24__i5__i36__net4 i24__i5__c_in i24__i5__i36__net2 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm90 i24__i5__i36__net3 i24__i5__b_in i24__i5__i36__net4 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm89 vdd i24__i5__a_in i24__i5__i36__net3 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm49 r1 i24__i5__i36__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm48 vdd i24__i5__i36__net1 r2 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm92_2__rcx vdd i24__i5__a_in i24__i5__i36__net9 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm92_1__rcx i24__i5__i36__net9 i24__i5__a_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm92 vdd i24__i5__a_in i24__i5__i36__net9 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm93_2__rcx i24__i5__i36__net9 i24__i5__b_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm93_1__rcx vdd i24__i5__b_in i24__i5__i36__net9 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm93 i24__i5__i36__net9 i24__i5__b_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm94_1__rcx i24__i5__i36__net1 i24__i5__c_in i24__i5__i36__net9 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__pm94 i24__i5__i36__net9 i24__i5__c_in i24__i5__i36__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=800e-9 PS=800e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i6__pm0 i24__i6__net1 _net3 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i6__pm1 i24__i6__net2 _net7 i24__i6__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i6__pm2 i24__a0 i24__i6__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i7__pm0 i24__i7__net1 _net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i7__pm1 i24__i7__net2 _net6 i24__i7__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i7__pm2 i24__a1 i24__i7__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i8__pm0 i24__i8__net1 _net1 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i8__pm1 i24__i8__net2 _net5 i24__i8__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i8__pm2 i24__a2 i24__i8__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i9__pm0 i24__i9__net1 _net0 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i9__pm1 i24__i9__net2 _net4 i24__i9__net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i9__pm2 i24__a3 i24__i9__net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__pm0 i14__i14__net2 i14__q0 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__pm1 i14__i14__net5 clk_out i14__i14__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__pm3 i14__i14__net4 i14__i14__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__pm2 bcore i14__clk_bar i14__i14__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__pm0 i14__i13__net2 i14__q1 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__pm1 i14__i13__net5 clk_out i14__i13__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__pm3 i14__i13__net4 i14__i13__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__pm2 i14__d1 i14__clk_bar i14__i13__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__pm0 i14__i12__net2 i14__q2 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__pm1 i14__i12__net5 clk_out i14__i12__net2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__pm3 i14__i12__net4 i14__i12__net5 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=153.6e-15 AS=153.6e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__pm2 i14__d2 i14__clk_bar i14__i12__net4 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.22e-6 PS=2.22e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i5__pm2 i14__q0 shift r0 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i5__pm1 i14__q0 i14__shift_bar i14__d1 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i4__pm2 i14__q1 shift r1 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i4__pm1 i14__q1 i14__shift_bar i14__d2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i3__pm2 i14__q2 shift r2 vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i3__pm1 i14__q2 i14__shift_bar vss vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i15__pm0 i14__shift_bar shift vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i7__pm0 i14__clk_bar clk_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__pm5 vdd i26__clk_out ck vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__pm4 vdd clk_out i26__clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__pm0 i26__t_out vss clk_out vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__pm1 ck_bar i26__t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=1.16667 NRS=1.16667 M=1
+mi20__nm5_67__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_66__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_65__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_64__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_63__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_62__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_61__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_60__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.49625e-12 AS=1.49625e-12 PD=20.3e-6 PS=20.3e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_59__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_58__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_57__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_56__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_55__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_54__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_53__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_52__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_51__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_50__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_49__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_48__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_47__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_46__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_45__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_44__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_43__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_42__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_41__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_40__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_39__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_38__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_37__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_36__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_35__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_34__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_33__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_32__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_31__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_30__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_29__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_28__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_27__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_26__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_25__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_24__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_23__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_22__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_21__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_20__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_19__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_18__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_17__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_16__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_15__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_14__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_13__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_12__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_11__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_10__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_9__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_8__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_7__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.3e-6 PS=20.3e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_6__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_5__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_4__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_3__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_2__rcx vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5_1__rcx q i20__net5 vss vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm5 vss i20__net5 q vss g45n2svt L=150e-9 W=9.975e-6 AD=1.995e-12 AS=1.995e-12 PD=20.35e-6 PS=20.35e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_18__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_17__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_16__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_15__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_14__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_13__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_12__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_11__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_10__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.44225e-12 AS=1.44225e-12 PD=19.58e-6 PS=19.58e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_9__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_8__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.58e-6 PS=19.58e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_7__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_6__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_5__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_4__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_3__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_2__rcx i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4_1__rcx vss i20__net4 i20__net5 vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm4 i20__net5 i20__net4 vss vss g45n2svt L=150e-9 W=9.615e-6 AD=1.923e-12 AS=1.923e-12 PD=19.63e-6 PS=19.63e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm0 i20__net1 serial_in vss vss g45n2svt L=150e-9 W=960e-9 AD=144e-15 AS=144e-15 PD=2.22e-6 PS=2.22e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm1 i20__net2 i20__net1 vss vss g45n2svt L=150e-9 W=3.565e-6 AD=534.75e-15 AS=534.75e-15 PD=7.43e-6 PS=7.43e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm2_1__rcx i20__net3 i20__net2 vss vss g45n2svt L=150e-9 W=6.62e-6 AD=1.324e-12 AS=1.324e-12 PD=13.59e-6 PS=13.59e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm2 vss i20__net2 i20__net3 vss g45n2svt L=150e-9 W=6.62e-6 AD=993e-15 AS=993e-15 PD=13.59e-6 PS=13.59e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm3_4__rcx i20__net4 i20__net3 vss vss g45n2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.02e-6 PS=20.02e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm3_3__rcx vss i20__net3 i20__net4 vss g45n2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.07e-6 PS=20.07e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm3_2__rcx i20__net4 i20__net3 vss vss g45n2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.07e-6 PS=20.07e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm3_1__rcx vss i20__net3 i20__net4 vss g45n2svt L=150e-9 W=9.835e-6 AD=1.967e-12 AS=1.967e-12 PD=20.07e-6 PS=20.07e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi20__nm3 i20__net4 i20__net3 vss vss g45n2svt L=150e-9 W=9.835e-6 AD=1.47525e-12 AS=1.47525e-12 PD=20.02e-6 PS=20.02e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi21__m2 vss bcore i21__bio_not vss g45n2svt L=150e-9 W=960e-9 AD=144e-15 AS=144e-15 PD=2.22e-6 PS=2.22e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi21__m3 vss i21__bcore_not serial_in vss g45n2svt L=150e-9 W=960e-9 AD=144e-15 AS=144e-15 PD=2.22e-6 PS=2.22e-6 NRD=468.75e-3 NRS=468.75e-3 M=1
+mi10__i1__i1__nm0 i10__i1__i1__net5 i10__i1__ck_bar i10__i1__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__nm1 i10__i1__i1__net1 x3 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__nm2 _net4 i10__i1__ck i10__i1__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__nm17 vss reset _net4 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i1__nm3 i10__i1__i1__net3 i10__i1__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__nm5 vss i10__i1__i0__clk_out i10__i1__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__nm4 vss clk_divided_four i10__i1__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__nm6 i10__i1__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i1__i0__nm1 i10__i1__ck_bar i10__i1__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__nm0 i10__i10__i1__net5 i10__i10__ck_bar i10__i10__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__nm1 i10__i10__i1__net1 x0 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__nm2 _net7 i10__i10__ck i10__i10__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__nm17 vss reset _net7 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i1__nm3 i10__i10__i1__net3 i10__i10__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__nm5 vss i10__i10__i0__clk_out i10__i10__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__nm4 vss clk_divided_four i10__i10__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__nm6 i10__i10__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i10__i0__nm1 i10__i10__ck_bar i10__i10__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__nm0 i10__i9__i1__net5 i10__i9__ck_bar i10__i9__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__nm1 i10__i9__i1__net1 x1 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__nm2 _net6 i10__i9__ck i10__i9__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__nm17 vss reset _net6 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i1__nm3 i10__i9__i1__net3 i10__i9__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__nm5 vss i10__i9__i0__clk_out i10__i9__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__nm4 vss clk_divided_four i10__i9__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__nm6 i10__i9__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i9__i0__nm1 i10__i9__ck_bar i10__i9__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__nm0 i10__i8__i1__net5 i10__i8__ck_bar i10__i8__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__nm1 i10__i8__i1__net1 x2 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__nm2 _net5 i10__i8__ck i10__i8__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__nm17 vss reset _net5 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i1__nm3 i10__i8__i1__net3 i10__i8__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__nm5 vss i10__i8__i0__clk_out i10__i8__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__nm4 vss clk_divided_four i10__i8__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__nm6 i10__i8__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi10__i8__i0__nm1 i10__i8__ck_bar i10__i8__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__nm0 i23__i1__i1__net5 i23__i1__ck_bar i23__i1__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__nm1 i23__i1__i1__net1 y3 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__nm2 _net0 i23__i1__ck i23__i1__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__nm17 vss reset _net0 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i1__nm3 i23__i1__i1__net3 i23__i1__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__nm5 vss i23__i1__i0__clk_out i23__i1__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__nm4 vss clk_divided_four i23__i1__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__nm6 i23__i1__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i1__i0__nm1 i23__i1__ck_bar i23__i1__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__nm0 i23__i10__i1__net5 i23__i10__ck_bar i23__i10__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__nm1 i23__i10__i1__net1 y0 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__nm2 _net3 i23__i10__ck i23__i10__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__nm17 vss reset _net3 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i1__nm3 i23__i10__i1__net3 i23__i10__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__nm5 vss i23__i10__i0__clk_out i23__i10__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__nm4 vss clk_divided_four i23__i10__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__nm6 i23__i10__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i10__i0__nm1 i23__i10__ck_bar i23__i10__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__nm0 i23__i9__i1__net5 i23__i9__ck_bar i23__i9__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__nm1 i23__i9__i1__net1 y1 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__nm2 _net2 i23__i9__ck i23__i9__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__nm17 vss reset _net2 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i1__nm3 i23__i9__i1__net3 i23__i9__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__nm5 vss i23__i9__i0__clk_out i23__i9__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__nm4 vss clk_divided_four i23__i9__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__nm6 i23__i9__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i9__i0__nm1 i23__i9__ck_bar i23__i9__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__nm0 i23__i8__i1__net5 i23__i8__ck_bar i23__i8__i1__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__nm1 i23__i8__i1__net1 y2 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__nm2 _net1 i23__i8__ck i23__i8__i1__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__nm17 vss reset _net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i1__nm3 i23__i8__i1__net3 i23__i8__i1__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__nm5 vss i23__i8__i0__clk_out i23__i8__ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__nm4 vss clk_divided_four i23__i8__i0__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__nm6 i23__i8__i0__t_out vdd clk_divided_four vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi23__i8__i0__nm1 i23__i8__ck_bar i23__i8__i0__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi21__nm0 vss bcore i21__bcore_not vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm8 i25__net1 i25__net26 i25__net86 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm9 i25__net86 i25__net85 vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm6 i25__net85 i25__clk_divided_two_bar i25__net95 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm7 i25__net95 i25__clk_divided_four_bar vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm2 i25__net26 ck i25__net92 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm3 i25__net92 i25__net91 vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm0 i25__net91 ck_bar i25__net89 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm1 i25__net89 i25__clk_divided_two_bar vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__i5__nm0 i25__i5__net1 i25__clk_divided_two_bar shift vss g45n1svt L=45e-9 W=240e-9 AD=38.4e-15 AS=38.4e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__i5__nm3 vss i25__clk_divided_four_bar i25__i5__net1 vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=780e-9 PS=780e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm4 i25__clk_divided_two_bar i25__net26 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm5 i25__clk_divided_four_bar i25__net1 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi25__nm10 clk_divided_four i25__clk_divided_four_bar vss vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i18__nm0 i24__i5__i35__i18__net2 i24__i5__s2 i24__i5__s1 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i18__nm1 i24__i5__s2 i24__i5__s1 i24__i5__i35__i18__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i18__nm2 r0 i24__i5__i35__i18__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm1_2__rcx i24__i5__i35__i17__net2 i24__i5__s2 vss vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm1_1__rcx vss i24__i5__s2 i24__i5__i35__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm1 i24__i5__i35__i17__net2 i24__i5__s2 vss vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm0_2__rcx i24__i5__i35__i17__net1 i24__i5__s1 i24__i5__i35__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm0_1__rcx i24__i5__i35__i17__net2 i24__i5__s1 i24__i5__i35__i17__net1 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm0 i24__i5__i35__i17__net1 i24__i5__s1 i24__i5__i35__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i35__i17__nm2 i24__i5__c_in i24__i5__i35__i17__net1 vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i18__nm0 i24__i5__i34__i18__net2 i24__a1 i24__a0 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i18__nm1 i24__a1 i24__a0 i24__i5__i34__i18__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i18__nm2 i24__i5__s1 i24__i5__i34__i18__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm1_2__rcx i24__i5__i34__i17__net2 i24__a1 vss vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm1_1__rcx vss i24__a1 i24__i5__i34__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm1 i24__i5__i34__i17__net2 i24__a1 vss vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm0_2__rcx i24__i5__i34__i17__net1 i24__a0 i24__i5__i34__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm0_1__rcx i24__i5__i34__i17__net2 i24__a0 i24__i5__i34__i17__net1 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm0 i24__i5__i34__i17__net1 i24__a0 i24__i5__i34__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i34__i17__nm2 i24__i5__a_in i24__i5__i34__i17__net1 vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i18__nm0 i24__i5__i33__i18__net2 i24__a3 i24__a2 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i18__nm1 i24__a3 i24__a2 i24__i5__i33__i18__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i18__nm2 i24__i5__s2 i24__i5__i33__i18__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm1_2__rcx i24__i5__i33__i17__net2 i24__a3 vss vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm1_1__rcx vss i24__a3 i24__i5__i33__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm1 i24__i5__i33__i17__net2 i24__a3 vss vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm0_2__rcx i24__i5__i33__i17__net1 i24__a2 i24__i5__i33__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm0_1__rcx i24__i5__i33__i17__net2 i24__a2 i24__i5__i33__i17__net1 vss g45n1svt L=45e-9 W=320e-9 AD=51.2e-15 AS=51.2e-15 PD=960e-9 PS=960e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm0 i24__i5__i33__i17__net1 i24__a2 i24__i5__i33__i17__net2 vss g45n1svt L=45e-9 W=320e-9 AD=44.8e-15 AS=44.8e-15 PD=940e-9 PS=940e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i33__i17__nm2 i24__i5__b_in i24__i5__i33__i17__net1 vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm70_2__rcx i24__i5__i36__net1 i24__i5__c_in i24__i5__i36__net7 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm52 i24__i5__i36__net11 i24__i5__a_in i24__i5__i36__net1 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm48 vss i24__i5__b_in i24__i5__i36__net11 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm61 i24__i5__i36__net12 i24__i5__a_in vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm62 vss i24__i5__b_in i24__i5__i36__net12 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm63 i24__i5__i36__net12 i24__i5__c_in vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm64 i24__i5__i36__net2 i24__i5__i36__net1 i24__i5__i36__net12 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm65 i24__i5__i36__net5 i24__i5__c_in i24__i5__i36__net2 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm66 i24__i5__i36__net6 i24__i5__a_in i24__i5__i36__net5 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm67 vss i24__i5__b_in i24__i5__i36__net6 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm37 r1 i24__i5__i36__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm36 vss i24__i5__i36__net1 r2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm68_2__rcx vss i24__i5__a_in i24__i5__i36__net7 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm68_1__rcx i24__i5__i36__net7 i24__i5__a_in vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm68 vss i24__i5__a_in i24__i5__i36__net7 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm69_2__rcx i24__i5__i36__net7 i24__i5__b_in vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm69_1__rcx vss i24__i5__b_in i24__i5__i36__net7 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm69 i24__i5__i36__net7 i24__i5__b_in vss vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm70_1__rcx i24__i5__i36__net1 i24__i5__c_in i24__i5__i36__net7 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i5__i36__nm70 i24__i5__i36__net7 i24__i5__c_in i24__i5__i36__net1 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=560e-9 PS=560e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i6__nm0 i24__i6__net2 _net3 _net7 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i6__nm1 _net3 _net7 i24__i6__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i6__nm2 i24__a0 i24__i6__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i7__nm0 i24__i7__net2 _net2 _net6 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i7__nm1 _net2 _net6 i24__i7__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i7__nm2 i24__a1 i24__i7__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i8__nm0 i24__i8__net2 _net1 _net5 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i8__nm1 _net1 _net5 i24__i8__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i8__nm2 i24__a2 i24__i8__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i9__nm0 i24__i9__net2 _net0 _net4 vss g45n1svt L=45e-9 W=120e-9 AD=19.2e-15 AS=19.2e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i9__nm1 _net0 _net4 i24__i9__net2 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=540e-9 PS=540e-9 NRD=1.16667 NRS=1.16667 M=1
+mi24__i9__nm2 i24__a3 i24__i9__net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__nm1 i14__i14__net1 i14__q0 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__nm0 i14__i14__net5 i14__clk_bar i14__i14__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__nm3 i14__i14__net3 i14__i14__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__nm2 bcore clk_out i14__i14__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i14__nm17 vss reset bcore vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__nm1 i14__i13__net1 i14__q1 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__nm0 i14__i13__net5 i14__clk_bar i14__i13__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__nm3 i14__i13__net3 i14__i13__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__nm2 i14__d1 clk_out i14__i13__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i13__nm17 vss reset i14__d1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__nm1 i14__i12__net1 i14__q2 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__nm0 i14__i12__net5 i14__clk_bar i14__i12__net1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__nm3 i14__i12__net3 i14__i12__net5 vss vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__nm2 i14__d2 clk_out i14__i12__net3 vss g45n1svt L=45e-9 W=480e-9 AD=76.8e-15 AS=76.8e-15 PD=1.28e-6 PS=1.28e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i12__nm17 vss reset i14__d2 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.26e-6 PS=1.26e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i5__nm5 i14__q0 shift i14__d1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i5__nm2 i14__q0 i14__shift_bar r0 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i4__nm5 i14__q1 shift i14__d2 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i4__nm2 i14__q1 i14__shift_bar r1 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i3__nm5 i14__q2 shift vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i3__nm2 i14__q2 i14__shift_bar r2 vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i15__nm0 i14__shift_bar shift vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi14__i7__nm0 i14__clk_bar clk_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__nm5 vss i26__clk_out ck vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__nm4 vss clk_out i26__clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__nm6 i26__t_out vdd clk_out vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+mi26__nm1 ck_bar i26__t_out vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=1.16667 NRS=1.16667 M=1
+
+
+.end
+

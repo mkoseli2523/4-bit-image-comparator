@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      mkoseli2
+HostName                       eceb-2022-06.ews.illinois.edu
+ProcessIdentifier              35138
+ProcessCreationTime_UTC        1733812068
+ProcessCreationTime_Readable   Tue Dec 10 00:27:48 2024 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/mkoseli2/ece482.work/gpdk045/proj/level_shifter/av_extracted/layout.oa.cdslck
+TimeEditLocked                 Tue Dec 10 02:18:56 2024 CST

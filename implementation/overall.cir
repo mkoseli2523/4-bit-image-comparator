@@ -1,0 +1,398 @@
+project testbench
+.lib '/class/ece482/gpdk045_mos' TT
+
+$The following parameter can be modified.
+.param TCK = 0.4167n
+
+$The following parameters cannot be modified.
+.param trf_ck = 5p
+.param trf_ip_reset = 50p
+.param CK_pw = 0.5*TCK
+.param reset_delay = 0
+.param reset_delay2 = 25*TCK
+.param reset_pw = 0.9n
+.param reset_pw2 = 3n
+.param sim_end = 50*TCK
+.param input_delay = 0.5n
+.param input_pw = 4*TCK
+
+$Clock Buffer - You will clk as your clock signal
+mnm1 clk_out net10 vss vss g45n1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mnm0 net10 CK vss vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm1 clk_out net10 vdd vdd g45p1svt L=45e-9 W=1.92e-6 AD=268.8e-15 AS=268.8e-15 PD=4.12e-6 PS=4.12e-6 NRD=72.9167e-3 NRS=72.9167e-3 M=1
+mpm0 net10 CK vdd vdd g45p1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+
+vX3 x3 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+3*input_pw' 1.1  'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vX2 x2 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+3*input_pw' 1.1  'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vX1 x1 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+3*input_pw' 0  'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vX0 x0 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+3*input_pw' 0  'input_delay+4*trf_ip_reset+3*input_pw' 1.1 'input_delay+4*trf_ip_reset+4*input_pw' 1.1 sim_end 1.1)
+vY3 y3 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+1*input_pw' 0 'input_delay+2*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+3*input_pw' 1.1  'input_delay+4*trf_ip_reset+3*input_pw' 1.1 'input_delay+4*trf_ip_reset+4*input_pw' 1.1 sim_end 1.1)
+vY2 y2 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 sim_end 1.1)
+vY1 y1 0 PWL(0 0 'input_delay+0*trf_ip_reset+0*input_pw' 0 'input_delay+1*trf_ip_reset+0*input_pw' 1.1 'input_delay+1*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+1*input_pw' 1.1 'input_delay+2*trf_ip_reset+2*input_pw' 1.1 'input_delay+3*trf_ip_reset+2*input_pw' 0 'input_delay+3*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+3*input_pw' 0 'input_delay+4*trf_ip_reset+4*input_pw' 0 sim_end 0)
+vY0 y0 0 PWL(0 0 sim_end 0)
+
+vCK CK 0 pulse(0 1.1 trf_ck trf_ck trf_ck CK_pw TCK)
+vReset reset 0 PWL(0 1.1 reset_delay 1.1 'reset_delay+trf_ip_reset' 1.1 'reset_delay+reset_pw+trf_ip_reset' 1.1 'reset_delay+reset_pw+2*trf_ip_reset' 0 'reset_delay+reset_pw+2*trf_ip_reset+reset_delay2' 0 'reset_delay+reset_pw+3*trf_ip_reset+reset_delay2' 1.1 'reset_delay+reset_pw+reset_pw2+3*trf_ip_reset+reset_delay2' 1.1 'reset_delay+reset_pw+reset_pw2+4*trf_ip_reset+reset_delay2' 0 sim_end 0)
+
+vVDDIO vdd_oc 0 1.8
+vVDD vdd 0 1.1
+vVSS vss 0 0
+** Library name: proj
+** Generated for: hspiceD
+** Generated on: Dec  2 19:27:32 2024
+** Design library name: proj
+** Design cell name: overall
+** Design view name: schematic
+** Generated for: hspiceD
+** Generated on: Dec  3 19:46:39 2024
+** Design library name: proj
+** Design cell name: overall
+** Design view name: schematic
+
+
+.TEMP 25.0
+.OPTION
++    ARTIST=2
++    INGOLD=2
++    PARHIER=LOCAL
++    PSF=2
+
+** Library name: proj
+** Cell name: full_adder
+** View name: schematic
+.subckt full_adder a_in b_in c_in c_out gnd s_out vdd
+mnm52 net1 a_in net11 gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm66 net5 a_in net6 gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm36 c_out net1 gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm51 net1 c_in net7 gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm63 net12 c_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm62 net12 b_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm65 net2 c_in net5 gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm67 net6 b_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm48 net11 b_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm37 s_out net2 gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm61 net12 a_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm64 net2 net1 net12 gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm50 net7 a_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm49 net7 b_in gnd gnd g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm91 net2 c_in net4 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm66 net9 a_in vdd vdd g45p1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm86 net13 b_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm87 net13 c_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm88 net2 net1 net13 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm90 net4 b_in net3 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm89 net3 a_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm49 s_out net2 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm72 net1 c_in net9 vdd g45p1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm83 net10 b_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm67 net9 b_in vdd vdd g45p1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm84 net1 a_in net10 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm85 net13 a_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm48 c_out net1 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+.ends full_adder
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: and
+** View name: schematic
+.subckt and vdd vss a_in b_in out
+mpm1 net1 b_in vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mpm0 net1 a_in vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mnm2 out net1 vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+mnm0 net1 a_in net2 vss g45n1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mnm1 net2 b_in vss vss g45n1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mpm2 out net1 vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+.ends and
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: xor
+** View name: schematic
+.subckt xor vdd vss a_in b_in xor_out
+mnm12 net2 b_in vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm14 net6 b_in vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm17 net3 net2 vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm13 xor_out a_in net6 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm15 net4 a_in vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm16 xor_out net4 net3 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm2 xor_out net2 net1 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm0 net2 b_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm3 net5 net4 vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm5 net4 a_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm4 xor_out b_in net5 vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mpm1 net1 a_in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+.ends xor
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: half_adder
+** View name: schematic
+.subckt half_adder vdd vss a_in b_in c_out s_out
+xi11 vdd vss a_in b_in c_out and
+xi16 vdd vss a_in b_in s_out xor
+.ends half_adder
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: ha_and_fa
+** View name: schematic
+.subckt ha_and_fa vdd vss a0 a1 a2 a3 r0 r1 r2
+xi22 net1 net2 net10 r2 vss r1 vdd full_adder
+xi16 vdd vss net3 net9 net10 r0 half_adder
+xi15 vdd vss a2 a3 net2 net9 half_adder
+xi14 vdd vss a0 a1 net1 net3 half_adder
+.ends ha_and_fa
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: new_xor
+** View name: schematic
+.subckt new_xor vdd vss a_in b_in xor_out
+mpm2 xor_out net2 vdd vdd g45p1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+mpm1 net2 a_in net1 vdd g45p1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+mpm0 net1 b_in vdd vdd g45p1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+mnm2 xor_out net2 vss vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mnm1 net2 b_in a_in vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mnm0 net2 a_in b_in vss g45n1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+.ends new_xor
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: combined3
+** View name: schematic
+.subckt combined3 vdd vss r0 r1 r2 x<3> x<2> x<1> x<0> y<3> y<2> y<1> y<0>
+xi4 vdd vss net1 net2 net3 net4 r0 r1 r2 ha_and_fa
+xi3 vdd vss x<3> y<3> net4 new_xor
+xi2 vdd vss x<2> y<2> net3 new_xor
+xi1 vdd vss x<1> y<1> net2 new_xor
+xi0 vdd vss x<0> y<0> net1 new_xor
+.ends combined3
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: inv
+** View name: schematic
+.subckt inv vdd vss in out
+mpm0 out in vdd vdd g45p1svt L=45e-9 W=240e-9 AD=33.6e-15 AS=33.6e-15 PD=760e-9 PS=760e-9 NRD=583.333e-3 NRS=583.333e-3 M=1
+mnm0 out in vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+.ends inv
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: NAND
+** View name: schematic
+.subckt NAND a b c vdd vss
+mnm3 net1 b vss vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm0 c a net1 vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm1 c a vdd vdd g45p1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mpm0 c b vdd vdd g45p1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+.ends NAND
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: register_2
+** View name: schematic
+.subckt register_2 clk clk_bar d q rst vdd vss
+mpm3 net4 x vdd vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mpm2 q clk_bar net4 vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mpm1 x clk net2 vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mpm0 net2 d vdd vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mnm17 q rst vss vss g45n1svt L=45e-9 W=5.76e-6 AD='5.76e-6/ceil(575.9995e-3)<119.5e-9?(floor(ceil(575.9995e-3)/2.0)*(14.4e-15+(5.76e-6/ceil(575.9995e-3))*100e-9)+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)!=0?14.4e-15+(5.76e-6/ceil(575.9995e-3))*50e-9:0))/1:(floor(ceil(575.9995e-3)/2.0)*(110e-9*(5.76e-6/ceil(575.9995e-3)))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)!=0?140e-9*(5.76e-6/ceil(575.9995e-3)):0))/1' AS='5.76e-6/ceil(575.9995e-3)<119.5e-9?(((14.4e-15+(5.76e-6/ceil(575.9995e-3))*50e-9)+floor((ceil(575.9995e-3)-1)/2.0)*(14.4e-15+(5.76e-6/ceil(575.9995e-3))*100e-9))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)==0?14.4e-15+(5.76e-6/ceil(575.9995e-3))*50e-9:0))/1:((140e-9*(5.76e-6/ceil(575.9995e-3))+floor((ceil(575.9995e-3)-1)/2.0)*(110e-9*(5.76e-6/ceil(575.9995e-3))))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)==0?140e-9*(5.76e-6/ceil(575.9995e-3)):0))/1'
++PD='5.76e-6/ceil(575.9995e-3)<119.5e-9?(floor(ceil(575.9995e-3)/2.0)*680e-9+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(575.9995e-3)/2.0)*(220e-9+2*(5.76e-6/ceil(575.9995e-3)))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)!=0?280e-9+2*(5.76e-6/ceil(575.9995e-3)):0))/1' PS='5.76e-6/ceil(575.9995e-3)<119.5e-9?((580e-9+floor((ceil(575.9995e-3)-1)/2.0)*680e-9)+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(5.76e-6/ceil(575.9995e-3)))+floor((ceil(575.9995e-3)-1)/2.0)*(220e-9+2*(5.76e-6/ceil(575.9995e-3))))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)==0?280e-9+2*(5.76e-6/ceil(575.9995e-3)):0))/1'
++NRD='5.76e-6/ceil(575.9995e-3)<119.5e-9?(floor(ceil(575.9995e-3)/2.0)*(14.4e-15+(5.76e-6/ceil(575.9995e-3))*100e-9)+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)!=0?14.4e-15+(5.76e-6/ceil(575.9995e-3))*50e-9:0))/1:((floor(ceil(575.9995e-3)/2.0)*(110e-9*(5.76e-6/ceil(575.9995e-3)))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)!=0?140e-9*(5.76e-6/ceil(575.9995e-3)):0))/1)/((((5.76e-6/ceil(575.9995e-3))*ceil(575.9995e-3))*(5.76e-6/ceil(575.9995e-3)))*ceil(575.9995e-3))'
++NRS='5.76e-6/ceil(575.9995e-3)<119.5e-9?(((14.4e-15+(5.76e-6/ceil(575.9995e-3))*50e-9)+floor((ceil(575.9995e-3)-1)/2.0)*(14.4e-15+(5.76e-6/ceil(575.9995e-3))*100e-9))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)==0?14.4e-15+(5.76e-6/ceil(575.9995e-3))*50e-9:0))/1:(((140e-9*(5.76e-6/ceil(575.9995e-3))+floor((ceil(575.9995e-3)-1)/2.0)*(110e-9*(5.76e-6/ceil(575.9995e-3))))+(ceil(575.9995e-3)/2-floor(ceil(575.9995e-3)/2)==0?140e-9*(5.76e-6/ceil(575.9995e-3)):0))/1)/((((5.76e-6/ceil(575.9995e-3))*ceil(575.9995e-3))*(5.76e-6/ceil(575.9995e-3)))*ceil(575.9995e-3))' M=1
+mnm3 net3 x vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm2 q clk net3 vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm1 net1 d vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm0 x clk_bar net1 vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+c5 clk vss 2e-15
+c4 clk_bar vss 2e-15
+c3 clk vss 2e-15
+c2 clk_bar vss 2e-15
+c1 x vss 2e-15
+c0 d vss 2e-15
+c11 rst vss 2e-15
+.ends register_2
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: clk_deskew
+** View name: schematic
+.subckt clk_deskew ck ck_bar clk vdd vss
+mnm5 ck clk_out vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm4 clk_out clk vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm1 ck_bar t_out vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm0 t_out vdd clk vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mpm5 ck clk_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mpm4 clk_out clk vdd vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mpm1 ck_bar t_out vdd vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+mpm0 t_out vss clk vdd g45p1svt L=45e-9 W=960e-9 AD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1' AS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1'
++PD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*680e-9+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(95.9995e-3)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1' PS='960e-9/ceil(95.9995e-3)<119.5e-9?((580e-9+floor((ceil(95.9995e-3)-1)/2.0)*680e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(960e-9/ceil(95.9995e-3)))+floor((ceil(95.9995e-3)-1)/2.0)*(220e-9+2*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?280e-9+2*(960e-9/ceil(95.9995e-3)):0))/1'
++NRD='960e-9/ceil(95.9995e-3)<119.5e-9?(floor(ceil(95.9995e-3)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9)+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:((floor(ceil(95.9995e-3)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3)))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)!=0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' NRS='960e-9/ceil(95.9995e-3)<119.5e-9?(((14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9)+floor((ceil(95.9995e-3)-1)/2.0)*(14.4e-15+(960e-9/ceil(95.9995e-3))*100e-9))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?14.4e-15+(960e-9/ceil(95.9995e-3))*50e-9:0))/1:(((140e-9*(960e-9/ceil(95.9995e-3))+floor((ceil(95.9995e-3)-1)/2.0)*(110e-9*(960e-9/ceil(95.9995e-3))))+(ceil(95.9995e-3)/2-floor(ceil(95.9995e-3)/2)==0?140e-9*(960e-9/ceil(95.9995e-3)):0))/1)/((((960e-9/ceil(95.9995e-3))*ceil(95.9995e-3))*(960e-9/ceil(95.9995e-3)))*ceil(95.9995e-3))' M=1
+.ends clk_deskew
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: f4v2
+** View name: schematic
+.subckt f4v2 q clk rst shift vdd vss
+xi3 vdd vss q clk_divided_four_bar inv
+xi2 vdd vss net4 clk_divided_two_bar inv
+xi5 clk_divided_four_bar clk_divided_two_bar shift vdd vss NAND
+xi1 net4 clk_divided_two_bar clk_divided_four_bar q rst vdd vss register_2
+xi0 net6 net2 clk_divided_two_bar net4 rst vdd vss register_2
+xi4 net6 net2 clk vdd vss clk_deskew
+.ends f4v2
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: clk_deskew_reg
+** View name: schematic
+.subckt clk_deskew_reg clk d q rst vdd vss
+xi0 ck ck_bar clk vdd vss clk_deskew
+xi1 ck ck_bar d q rst vdd vss register_2
+.ends clk_deskew_reg
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: pipo_2
+** View name: schematic
+.subckt pipo_2 clk d<3> d<2> d<1> d<0> q<3> q<2> q<1> q<0> rst vdd vss
+xi8 clk d<2> q<2> rst vdd vss clk_deskew_reg
+xi9 clk d<1> q<1> rst vdd vss clk_deskew_reg
+xi10 clk d<0> q<0> rst vdd vss clk_deskew_reg
+xi1 clk d<3> q<3> rst vdd vss clk_deskew_reg
+.ends pipo_2
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: off_chip_driver
+** View name: schematic
+.subckt off_chip_driver r_out serial_in vdd vss
+mpm5 r_out net5 vdd vdd g45p2svt L=150e-9 W=937.5e-6 AD=75.012e-12 AS=76.209e-12 PD=952.69e-6 PS=972.88e-6 NRD=85.3197e-6 NRS=86.6812e-6 M=1
+mpm4 net5 net4 vdd vdd g45p2svt L=150e-9 W=236.64e-6 AD=18.9312e-12 AS=20.1144e-12 PD=240.48e-6 PS=260.44e-6 NRD=338.066e-6 NRS=359.195e-6 M=1
+mpm3 net4 net3 vdd vdd g45p2svt L=150e-9 W=59.7e-6 AD=4.776e-12 AS=5.97e-12 PD=60.66e-6 PS=80.8e-6 NRD=1.34003e-3 NRS=1.67504e-3 M=1
+mpm2 net3 net2 vdd vdd g45p2svt L=150e-9 W=15.075e-6 AD=1.2064e-12 AS=2.1112e-12 PD=15.4e-6 PS=30.72e-6 NRD=5.30504e-3 NRS=9.28382e-3 M=1
+mpm1 net2 net1 vdd vdd g45p2svt L=150e-9 W=3.805e-6 AD=532.7e-15 AS=532.7e-15 PD=7.89e-6 PS=7.89e-6 NRD=36.7937e-3 NRS=36.7937e-3 M=1
+mpm0 net1 serial_in vdd vdd g45p2svt L=150e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mnm5 r_out net5 vss vss g45n2svt L=150e-9 W=937.65e-6 AD=75.012e-12 AS=76.209e-12 PD=952.69e-6 PS=972.88e-6 NRD=85.3197e-6 NRS=86.6812e-6 M=1
+mnm4 net5 net4 vss vss g45n2svt L=150e-9 W=236.64e-6 AD=18.9312e-12 AS=20.1144e-12 PD=240.48e-6 PS=260.44e-6 NRD=338.066e-6 NRS=359.195e-6 M=1
+mnm3 net4 net3 vss vss g45n2svt L=150e-9 W=59.73e-6 AD=4.7784e-12 AS=5.973e-12 PD=60.69e-6 PS=80.84e-6 NRD=1.33936e-3 NRS=1.6742e-3 M=1
+mnm2 net3 net2 vss vss g45n2svt L=150e-9 W=15.07e-6 AD=1.2056e-12 AS=2.1098e-12 PD=15.39e-6 PS=30.7e-6 NRD=5.30856e-3 NRS=9.28998e-3 M=1
+mnm1 net2 net1 vss vss g45n2svt L=150e-9 W=3.805e-6 AD=532.7e-15 AS=532.7e-15 PD=7.89e-6 PS=7.89e-6 NRD=36.7937e-3 NRS=36.7937e-3 M=1
+mnm0 net1 serial_in vss vss g45n2svt L=150e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+.ends off_chip_driver
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: mux
+** View name: schematic
+.subckt mux input_a input_b output_c shift shift_bar vdd vss
+mnm5 output_c shift input_a vss g45n1svt L=45e-9 W=120e-9 AD=16.8e-15 AS=16.8e-15 PD=520e-9 PS=520e-9 NRD=1.16667 NRS=1.16667 M=1
+mnm2 output_c shift_bar input_b vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+mpm2 output_c shift input_b vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+mpm1 output_c shift_bar input_a vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+c0 output_c vss 8e-15
+.ends mux
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: inverter
+** View name: schematic
+.subckt inverter in out vdd vss
+mnm0 out in vss vss g45n1svt L=45e-9 W=480e-9 AD=67.2e-15 AS=67.2e-15 PD=1.24e-6 PS=1.24e-6 NRD=291.667e-3 NRS=291.667e-3 M=1
+mpm0 out in vdd vdd g45p1svt L=45e-9 W=960e-9 AD=134.4e-15 AS=134.4e-15 PD=2.2e-6 PS=2.2e-6 NRD=145.833e-3 NRS=145.833e-3 M=1
+c0 out vss 2e-15
+.ends inverter
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: PISO_2
+** View name: schematic
+.subckt PISO_2 clk r0 r1 r2 serial_out shift vdd vss
+xi13 clk clk_bar q1 d1 vss vdd vss register_2
+xi14 clk clk_bar q2 serial_out vss vdd vss register_2
+xi12 clk clk_bar q0 d0 vss vdd vss register_2
+xi5 d1 r0 q2 shift shift_bar vdd vss mux
+xi4 d0 r1 q1 shift shift_bar vdd vss mux
+xi3 vss r2 q0 shift shift_bar vdd vss mux
+xi15 shift shift_bar vdd vss inverter
+xi7 clk clk_bar vdd vss inverter
+.ends PISO_2
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: level_shifter
+** View name: schematic
+.subckt level_shifter bcore bio vdd vddio vss
+m1 net2 bio vddio vddio g45p2svt L=150e-9 W=1.28e-6 AD='1.28e-6/ceil(127.9995e-3)<119.5e-9?(floor(ceil(127.9995e-3)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9)+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:(floor(ceil(127.9995e-3)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3)))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1' AS='1.28e-6/ceil(127.9995e-3)<119.5e-9?(((14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9)+floor((ceil(127.9995e-3)-1)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:((150e-9*(1.28e-6/ceil(127.9995e-3))+floor((ceil(127.9995e-3)-1)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3))))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1'
++PD='1.28e-6/ceil(127.9995e-3)<119.5e-9?(floor(ceil(127.9995e-3)/2.0)*680e-9+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(127.9995e-3)/2.0)*(400e-9+2*(1.28e-6/ceil(127.9995e-3)))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?300e-9+2*(1.28e-6/ceil(127.9995e-3)):0))/1' PS='1.28e-6/ceil(127.9995e-3)<119.5e-9?((580e-9+floor((ceil(127.9995e-3)-1)/2.0)*680e-9)+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?580e-9:0))/1:(((300e-9+2*(1.28e-6/ceil(127.9995e-3)))+floor((ceil(127.9995e-3)-1)/2.0)*(400e-9+2*(1.28e-6/ceil(127.9995e-3))))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?300e-9+2*(1.28e-6/ceil(127.9995e-3)):0))/1'
++NRD='1.28e-6/ceil(127.9995e-3)<119.5e-9?(floor(ceil(127.9995e-3)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9)+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:((floor(ceil(127.9995e-3)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3)))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1)/((((1.28e-6/ceil(127.9995e-3))*ceil(127.9995e-3))*(1.28e-6/ceil(127.9995e-3)))*ceil(127.9995e-3))'
++NRS='1.28e-6/ceil(127.9995e-3)<119.5e-9?(((14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9)+floor((ceil(127.9995e-3)-1)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:(((150e-9*(1.28e-6/ceil(127.9995e-3))+floor((ceil(127.9995e-3)-1)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3))))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1)/((((1.28e-6/ceil(127.9995e-3))*ceil(127.9995e-3))*(1.28e-6/ceil(127.9995e-3)))*ceil(127.9995e-3))' M=1
+m0 bio net2 vddio vddio g45p2svt L=150e-9 W=1.28e-6 AD='1.28e-6/ceil(127.9995e-3)<119.5e-9?(floor(ceil(127.9995e-3)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9)+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:(floor(ceil(127.9995e-3)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3)))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1' AS='1.28e-6/ceil(127.9995e-3)<119.5e-9?(((14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9)+floor((ceil(127.9995e-3)-1)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:((150e-9*(1.28e-6/ceil(127.9995e-3))+floor((ceil(127.9995e-3)-1)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3))))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1'
++PD='1.28e-6/ceil(127.9995e-3)<119.5e-9?(floor(ceil(127.9995e-3)/2.0)*680e-9+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(127.9995e-3)/2.0)*(400e-9+2*(1.28e-6/ceil(127.9995e-3)))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?300e-9+2*(1.28e-6/ceil(127.9995e-3)):0))/1' PS='1.28e-6/ceil(127.9995e-3)<119.5e-9?((580e-9+floor((ceil(127.9995e-3)-1)/2.0)*680e-9)+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?580e-9:0))/1:(((300e-9+2*(1.28e-6/ceil(127.9995e-3)))+floor((ceil(127.9995e-3)-1)/2.0)*(400e-9+2*(1.28e-6/ceil(127.9995e-3))))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?300e-9+2*(1.28e-6/ceil(127.9995e-3)):0))/1'
++NRD='1.28e-6/ceil(127.9995e-3)<119.5e-9?(floor(ceil(127.9995e-3)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9)+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:((floor(ceil(127.9995e-3)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3)))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)!=0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1)/((((1.28e-6/ceil(127.9995e-3))*ceil(127.9995e-3))*(1.28e-6/ceil(127.9995e-3)))*ceil(127.9995e-3))'
++NRS='1.28e-6/ceil(127.9995e-3)<119.5e-9?(((14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9)+floor((ceil(127.9995e-3)-1)/2.0)*(14.4e-15+(1.28e-6/ceil(127.9995e-3))*100e-9))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?14.4e-15+(1.28e-6/ceil(127.9995e-3))*50e-9:0))/1:(((150e-9*(1.28e-6/ceil(127.9995e-3))+floor((ceil(127.9995e-3)-1)/2.0)*(200e-9*(1.28e-6/ceil(127.9995e-3))))+(ceil(127.9995e-3)/2-floor(ceil(127.9995e-3)/2)==0?150e-9*(1.28e-6/ceil(127.9995e-3)):0))/1)/((((1.28e-6/ceil(127.9995e-3))*ceil(127.9995e-3))*(1.28e-6/ceil(127.9995e-3)))*ceil(127.9995e-3))' M=1
+mnm2 net1 bcore vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm1 net2 bcore vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mnm0 bio net1 vss vss g45n1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+mpm0 net1 bcore vdd vdd g45p1svt L=45e-9 W=480e-9 AD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1' AS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1'
++PD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*680e-9+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?580e-9:0))/1:(floor(ceil(47.9995e-3)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1' PS='480e-9/ceil(47.9995e-3)<119.5e-9?((580e-9+floor((ceil(47.9995e-3)-1)/2.0)*680e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?580e-9:0))/1:(((280e-9+2*(480e-9/ceil(47.9995e-3)))+floor((ceil(47.9995e-3)-1)/2.0)*(220e-9+2*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?280e-9+2*(480e-9/ceil(47.9995e-3)):0))/1'
++NRD='480e-9/ceil(47.9995e-3)<119.5e-9?(floor(ceil(47.9995e-3)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9)+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:((floor(ceil(47.9995e-3)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3)))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)!=0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' NRS='480e-9/ceil(47.9995e-3)<119.5e-9?(((14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9)+floor((ceil(47.9995e-3)-1)/2.0)*(14.4e-15+(480e-9/ceil(47.9995e-3))*100e-9))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?14.4e-15+(480e-9/ceil(47.9995e-3))*50e-9:0))/1:(((140e-9*(480e-9/ceil(47.9995e-3))+floor((ceil(47.9995e-3)-1)/2.0)*(110e-9*(480e-9/ceil(47.9995e-3))))+(ceil(47.9995e-3)/2-floor(ceil(47.9995e-3)/2)==0?140e-9*(480e-9/ceil(47.9995e-3)):0))/1)/((((480e-9/ceil(47.9995e-3))*ceil(47.9995e-3))*(480e-9/ceil(47.9995e-3)))*ceil(47.9995e-3))' M=1
+.ends level_shifter
+** End of subcircuit definition.
+
+** Library name: proj
+** Cell name: overall
+** View name: schematic
+xi24 vdd vss r0 r1 r2 x_q<3> x_q<2> x_q<1> x_q<0> y_q<3> y_q<2> y_q<1> y_q<0> combined3
+xi12 clk_divided_four clk_out reset shift vdd vss f4v2
+xi10 clk_divided_four x3 x2 x1 x0 x_q<3> x_q<2> x_q<1> x_q<0> reset vdd vss pipo_2
+xi23 clk_divided_four y3 y2 y1 y0 y_q<3> y_q<2> y_q<1> y_q<0> reset vdd vss pipo_2
+xi20 q serial_in vdd_oc vss off_chip_driver
+xi14 clk_out r0 r1 r2 bcore shift vdd vss PISO_2
+c0 q vss 10e-12
+xi21 bcore serial_in vdd vdd_oc vss level_shifter
+
+
+.tran 0 sim_end
+
+.option post
+.end
+
